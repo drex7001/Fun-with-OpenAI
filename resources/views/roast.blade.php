@@ -8,20 +8,21 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="h-full grid place-items-center p-6">
+<body class="grid h-full p-6 place-items-center">
     @if (session('file'))
     {{-- @dump(session('file')) --}}
         <div>
             <img src="/storage/images/roasted.gif"/>
-            <a href="{{ asset(session('file')) }}" download class="mt-2 block w-full text-center bg-gray-200 hover:bg-blue-500 hover:text-white"> Download Audio </a>
+            <a href="{{ asset(session('file')) }}" download class="block w-full mt-2 text-center bg-gray-200 hover:bg-blue-500 hover:text-white"> Download Audio </a>
         </div>
     @else
         <form action="/roast" method="POST" class="w-full lg:max-w-md lg:mx-auto">
             @csrf
             <div class="flex gap-2">
-                <input type="text" name="topic" placeholder="What do you want us to roast?" required
-                    class="border p-2 rounded flex-1">
-                <button type="submit" class="rounded p-2 bg-gray-200 hover:bg-blue-500 hover:text-white">Roast</button>
+                <input type="text" name="topic" placeholder="What do you want us to roast?"
+                {{-- required --}}
+                    class="flex-1 p-2 border rounded">
+                <button type="submit" class="p-2 bg-gray-200 rounded hover:bg-blue-500 hover:text-white">Roast</button>
             </div>
         </form>
     @endif
